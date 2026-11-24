@@ -68,6 +68,11 @@ class DivisibleByValidatorTest extends AbstractComparisonValidatorTestCase
             ['100', '10'],
             [4.1, 0.1],
             [-4.1, 0.1],
+            [\PHP_INT_MIN, \PHP_INT_MIN],
+            [\PHP_INT_MIN, -1],
+            [\PHP_INT_MIN, 2],
+            [(string) \PHP_INT_MIN, '2'],
+            [0, \PHP_INT_MIN],
         ];
     }
 
@@ -88,6 +93,9 @@ class DivisibleByValidatorTest extends AbstractComparisonValidatorTestCase
             [4.15, '4.15', 0.1, '0.1', 'float'],
             [10.123, '10.123', 0.01, '0.01', 'float'],
             ['22', '"22"', '10', '"10"', 'string'],
+            [\PHP_INT_MIN, (string) \PHP_INT_MIN, \PHP_INT_MAX, (string) \PHP_INT_MAX, 'int'],
+            [\PHP_INT_MAX, (string) \PHP_INT_MAX, \PHP_INT_MIN, (string) \PHP_INT_MIN, 'int'],
+            [(string) \PHP_INT_MIN, '"'.\PHP_INT_MIN.'"', (string) \PHP_INT_MAX, '"'.\PHP_INT_MAX.'"', 'string'],
         ];
     }
 
